@@ -201,7 +201,7 @@ function createService({ db, storage, sharp }) {
           ...row,
           needsReview: row.status === 'submitted' && !selectionCurrent(product, row.selection),
           product: product
-            ? {
+            ? product.attributes ? product : {
               ...product,
               version: V.hash(product),
               models: product.models.filter((o) => o.active),

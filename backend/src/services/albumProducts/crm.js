@@ -89,6 +89,7 @@ async function prepareLine(db, line, { quoteId, currency } = {}) {
       };
   }
   if (!line.catalogue_preset_id) return out;
+  if (line.line_kind && line.line_kind !== 'item') throw new AppError('A configured product must be a regular quote item', 400);
   const preset = await db('quote_line_item_presets')
     .where({ id: line.catalogue_preset_id })
     .first();
