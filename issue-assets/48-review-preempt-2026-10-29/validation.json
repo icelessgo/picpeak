@@ -1,0 +1,43 @@
+{
+  "frontend": {
+    "suites": 4,
+    "tests": 34,
+    "typescript": "passed",
+    "scopedEslint": "passed",
+    "productionBuild": "passed"
+  },
+  "backend": {
+    "printSalesSQLite": 53,
+    "printSalesPostgreSQL": 53,
+    "postgresSchema": "Full core migrations on PostgreSQL18.4, isolated database",
+    "seedOnlyContract": 1,
+    "seedOnlyRestore": 1,
+    "restoreLocalEnvironment": "Node24; PICPEAK_IMPORT_WORKER_MEMORY_MIB=2048",
+    "routeFlagSettingsInventory": 43,
+    "scopedEslint": "passed"
+  },
+  "browser": {
+    "gallery": [
+      "1365x1000",
+      "390x844"
+    ],
+    "admin": [
+      "English1365x1000",
+      "English390x844",
+      "German1365x1000",
+      "German390x844"
+    ],
+    "checks": [
+      "real lightbox to bulk selection to invoice confirmation",
+      "physical scene proportions",
+      "dimensions shown once and finish retained",
+      "alphabetically ordered fit modes still default to crop-to-fill",
+      "decimal commas and multiline policy save",
+      "permission-specific file downloads and hidden fulfilment edits",
+      "localized order statuses",
+      "error and retry",
+      "no page errors or horizontal overflow"
+    ]
+  },
+  "scope": "Synthetic browser API fixtures; no live lab purchase or private deployment changes"
+}

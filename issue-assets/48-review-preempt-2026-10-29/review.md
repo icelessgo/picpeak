@@ -1,0 +1,31 @@
+# Print-shop review against earlier PicPeak feedback
+
+Reviewed on 2026-10-29 against draft PR #2342, starting at public commit `9b308f0`. Read issue comments, formal reviews and inline threads on the user's 12 earlier PicPeak PRs returned by GitHub: #2296, #2280, #2270, #2253, #2250, #2249, #2247, #2246, #2236, #2235, #2234 and #2222. Current PR had no submitted review or inline discussion at the start of this review. This is a proactive audit, not maintainer approval.
+
+| Earlier concern | Finding in the print shop | Change / verification |
+| --- | --- | --- |
+| [#2296: stale values read before a lock](https://github.com/PicPeak/picpeak/pull/2296#issuecomment-6448753826) | Acceptance compared the original billing-owner read with the frozen order after obtaining locks. An intervening reassignment could create an invoice under the old admin. | Read the current gallery inside the transaction, check both frozen owner and loaded actor against it, and use its current invoice context. A real database regression test changes ownership between initial access and the transaction and verifies that no invoice is created. |
+| [#2270: one undeletable object aborts later cleanup](https://github.com/PicPeak/picpeak/pull/2270#issuecomment-6480181552) | A single storage deletion rejected the entire print-retention sweep. | Isolate asset failures, log them, retain their database records for retry, continue other assets/orders and clear contact details only when deletion completes. Test verifies failure, continued progress and successful retry using actual local storage. |
+| [#2222: decimal commas and shared controls](https://github.com/PicPeak/picpeak/pull/2222#issuecomment-6336218725) | Production dimensions used browser number fields that reject a decimal comma. | Use the shared DecimalInput for trim, bleed and safe inset. Component and browser checks verify canonical 149.7 and 3.175 values from comma input. |
+| [#2222: migration guards, PostgreSQL, archive deletion, shared UI and localization](https://github.com/PicPeak/picpeak/pull/2222#issuecomment-6329023874) | A partial column migration could omit the owner column. Number 334 also overlaps #2280. Admin lacked clear query/error/empty states and complete German print labels. | Independent column guards; migration 337 (free after main 336 and #2280's 334–336). Regression coverage for interrupted migration and archived-gallery deletion. TanStack queries, conditional preparation polling, shared loading/error/retry/empty/read-only states and localized badges. Experimental header mapping, meaningful print-order notifications and complete EN/DE feature keys. |
+| [#2249: precise permissions and consistent German formality](https://github.com/PicPeak/picpeak/pull/2249) | Supplier-file downloads were tied to customers.edit even though the endpoint permits customers.view. German labels were incomplete/inconsistent. | Separate file access from fulfilment edits using each endpoint's exact permissions. Hide unauthorized actions and explain read-only settings. Formal Sie throughout printSales. Test permission split and locale-key parity; English/German desktop/phone browser checks caught and fixed German control overflow. |
+| [#2247](https://github.com/PicPeak/picpeak/pull/2247) / [#2246](https://github.com/PicPeak/picpeak/pull/2246): temporary review artifacts in product docs | docs/print-sales-review.md contained ephemeral checkpoint counts and PR review instructions. | Remove it from the source changes; retain durable workflow, shopping, manufacturing and setup guidance. Keep this audit and raw source snapshots outside the product repo and summarize review guidance in the PR body. |
+| [#2234: shared filename formatting](https://github.com/PicPeak/picpeak/pull/2234) | Shopping duplicated the display-filename fallback. | Reuse photoDisplayFilename. |
+| [#2236: moderated versus hidden photos](https://github.com/PicPeak/picpeak/pull/2236) / [#2280: disabled-feature behavior and orphaned financial records](https://github.com/PicPeak/picpeak/pull/2280) | Existing print tests already cover these boundaries. Archived deletion deserved an actual route test. | Preserve existing access/visibility/payment/snapshot protections. New archive-route test verifies detached orders remain globally visible and can render retained originals after gallery source removal. No new commerce provider or provider-specific lab assumption. |
+
+Additional reproduced issues found during this audit:
+
+- Null, array and string cart entries produced inappropriate internal errors. Validate entries before property reads; route tests assert HTTP 400 and no order creation.
+- The multi-line policy textarea rejected real paragraphs on save. Normalize CR/LF to LF, validate each plain-text line, retain the size/control-character restrictions and freeze the resulting policy in the quotation.
+- The backend canonicalizes allowed fit modes alphabetically. Prefer crop-to-fill explicitly when available so ordering does not silently change the gallery's approved initial crop choice; preserve explicit existing whole-photo placement.
+
+Validation on the final working tree is recorded in validation.json. PostgreSQL tests bootstrap the full core migrations, not a hand-made schema. Browser checks use actual UI components with synthetic products, artwork, orders and API responses; they do not represent a live lab purchase.
+
+Remaining decisions and limits:
+
+- #48's initial scope still needs maintainer agreement. Leave the PR draft and default-off.
+- Recheck migration 337 against the actual merge base when the PR is ready; it is free against main bdb07f9 and avoids the known open #2280 range.
+- Physical lab samples, exact supplier ICC acceptance, wide-gamut source-pipeline work, live S3 end-to-end work and ARM64 capacity remain outside verified claims. API connector ownership/design remains separate in #2341.
+- The earlier head's backend CI passed. The frontend Vitest/lint steps passed but its job was cancelled; that checkpoint is not described as a complete green run. The follow-up head must get its own CI result.
+
+Raw evidence: feedback.md, formal-reviews.md and review-sources.json in this audit directory. No other PR or private deployment was changed by this audit.
