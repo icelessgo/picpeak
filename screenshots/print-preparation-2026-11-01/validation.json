@@ -1,0 +1,115 @@
+{
+  "pullRequest": "https://github.com/PicPeak/picpeak/pull/2342",
+  "sourceCommit": "f8f77c3b",
+  "date": "2026-11-01",
+  "fixtures": "Actual gallery shop, modal, progress component, shipped styles and EN/DE translations with synthetic API data; no live order, credentials or physical lab purchase.",
+  "checks": {
+    "backendSQLite": {
+      "suites": 6,
+      "passed": 197
+    },
+    "backendPostgreSQL15": {
+      "suites": 6,
+      "passed": 197
+    },
+    "frontend": {
+      "files": 2,
+      "passed": 33
+    },
+    "typecheck": "passed",
+    "scopedLint": "passed",
+    "productionBuild": "passed",
+    "browser": {
+      "screenshots": 12,
+      "pageErrors": [],
+      "checks": [
+        {
+          "lang": "en",
+          "width": 1365,
+          "stage": "rendering",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "en",
+          "width": 1365,
+          "stage": "ready",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "en",
+          "width": 1365,
+          "stage": "failed",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "en",
+          "width": 390,
+          "stage": "rendering",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "en",
+          "width": 390,
+          "stage": "ready",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "en",
+          "width": 390,
+          "stage": "failed",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "de",
+          "width": 1365,
+          "stage": "rendering",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "de",
+          "width": 1365,
+          "stage": "ready",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "de",
+          "width": 1365,
+          "stage": "failed",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "de",
+          "width": 390,
+          "stage": "rendering",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "de",
+          "width": 390,
+          "stage": "ready",
+          "confirmationGuard": true
+        },
+        {
+          "lang": "de",
+          "width": 390,
+          "stage": "failed",
+          "confirmationGuard": true
+        }
+      ]
+    },
+    "footerClipping": "none at tested widths"
+  },
+  "packagingBenchmark": {
+    "artworkMiB": 2000,
+    "zipBytes": 2097154186,
+    "baselineRssMiB": 60.96875,
+    "peakRssMiB": 92.13671875,
+    "maxOpenSources": 1,
+    "seconds": 14.406
+  },
+  "limitations": [
+    "Packaging benchmark only; no live S3 or ARM64 capacity measurement",
+    "No end-to-end portable restore or physical lab validation in this change",
+    "Maintainer agreement on scope, feature-off policy and proposed new resource defaults remains required"
+  ]
+}
