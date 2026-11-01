@@ -1,0 +1,92 @@
+{
+  "pullRequest": 2342,
+  "sourceCommit": "01fd86c90e8aa0718b7c816c4e0cf6187f93cbe4",
+  "validation": {
+    "printIntegration": {
+      "SQLite": 113,
+      "PostgreSQL15": 113
+    },
+    "fileChecks": 15,
+    "frontend": 36,
+    "realS3SdkChecks": 2,
+    "S3SdkTarget": "Moto 5.2.5 local S3 emulator; no real bucket or payment credentials",
+    "browser": {
+      "screenshots": 12,
+      "pageErrors": [],
+      "checks": [
+        {
+          "mode": "ready",
+          "lang": "en",
+          "width": 1365
+        },
+        {
+          "mode": "expired",
+          "lang": "en",
+          "width": 1365
+        },
+        {
+          "mode": "admin",
+          "lang": "en",
+          "width": 1365
+        },
+        {
+          "mode": "ready",
+          "lang": "en",
+          "width": 390
+        },
+        {
+          "mode": "expired",
+          "lang": "en",
+          "width": 390
+        },
+        {
+          "mode": "admin",
+          "lang": "en",
+          "width": 390
+        },
+        {
+          "mode": "ready",
+          "lang": "de",
+          "width": 1365
+        },
+        {
+          "mode": "expired",
+          "lang": "de",
+          "width": 1365
+        },
+        {
+          "mode": "admin",
+          "lang": "de",
+          "width": 1365
+        },
+        {
+          "mode": "ready",
+          "lang": "de",
+          "width": 390
+        },
+        {
+          "mode": "expired",
+          "lang": "de",
+          "width": 390
+        },
+        {
+          "mode": "admin",
+          "lang": "de",
+          "width": 390
+        }
+      ]
+    },
+    "typecheck": "passed",
+    "scopedLint": "passed",
+    "productionBuild": "passed",
+    "relatedBackendSuites": [
+      "output",
+      "PDF",
+      "delivery",
+      "recovery metadata",
+      "S3 adapter",
+      "privacy inventory"
+    ]
+  },
+  "scope": "Actual components, styles, translations and shared layout spacing with synthetic API data. No physical lab or ARM64 capacity verification."
+}
