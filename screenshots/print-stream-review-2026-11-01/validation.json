@@ -1,0 +1,41 @@
+{
+  "sourceCommit": "f8894088297917e6e2e508ca00450bf6fb9e60c1",
+  "browser": {
+    "method": "Real PrintSalesAdminPage with synthetic API and context fixtures; product styles and EN/DE translations",
+    "viewports": [
+      1365,
+      390
+    ],
+    "states": [
+      "manual closure",
+      "read-only permissions",
+      "feature off"
+    ],
+    "screenshots": 12,
+    "pageErrors": [],
+    "horizontalOverflow": false
+  },
+  "archiveBenchmark": {
+    "method": "Stream 20 synthetic 100 MiB artwork files to a real local filesystem ZIP. No image rendering or real S3 involved.",
+    "node": 22,
+    "memoryLimitMiB": 256,
+    "heapLimitMiB": 128,
+    "cpus": 1,
+    "artworkMiB": 2000,
+    "zipBytes": 2097154186,
+    "baselineRssMiB": 61.02734375,
+    "peakRssMiB": 66.62890625,
+    "maxOpenSources": 1,
+    "seconds": 12.538
+  },
+  "validation": {
+    "printOrdersSQLite": 83,
+    "printOrdersPostgreSQL15": 83,
+    "fileAndPDFUnitCases": 12,
+    "frontendWorkflowCases": 25,
+    "typecheck": "pass",
+    "productionBuild": "pass",
+    "scopedLint": "pass"
+  },
+  "limits": "Production limits remain 64 MiB artwork/80 MiB ZIP pending preparation/invoice timing and capacity decisions. Benchmark does not establish image renderer, S3 or ARM64 capacity."
+}
