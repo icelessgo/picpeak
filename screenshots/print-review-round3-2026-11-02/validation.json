@@ -1,0 +1,29 @@
+{
+  "checkedCommit": "23b7c18bf82aeed110665970b18444eac94678e9",
+  "browser": {
+    "states": [
+      "healthy repair",
+      "failed native download",
+      "download transferring"
+    ],
+    "languages": [
+      "en",
+      "de"
+    ],
+    "widths": [
+      1365,
+      390
+    ],
+    "checks": 12,
+    "pageErrors": 0,
+    "horizontalOverflow": false,
+    "fixture": "Actual components/styles with synthetic API data and a native browser attachment; not a live backend/provider test."
+  },
+  "backend": {
+    "sqlite": "13 affected suites, 327 cases after final additional repair projection case; four opt-in SDK cases run separately.",
+    "postgres": "123 print-order and nine recovery cases, separate fully migrated PostgreSQL 15 fixtures.",
+    "s3": "Four real AWS SDK cases against Moto 5.2.5, including cancellation during multipart completion."
+  },
+  "frontend": "38 workflow cases, TypeScript, scoped lint and production build.",
+  "recovery": "Local standalone file restore and portable ZIP checksums covered. A full portable database restore, live S3, ARM64 capacity and physical lab validation are not claimed."
+}
